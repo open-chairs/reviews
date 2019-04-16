@@ -1,0 +1,54 @@
+{
+  "name": "reviews",
+  "version": "1.0.0",
+  "description": "Individual Reviews Component",
+  "author": "PlasmaIntec",
+  "license": "",
+  "engines": {
+    "node": ">=6.13.0"
+  },
+  "scripts": {
+    "start": "nodemon ./server/server.js",
+    "build": "webpack -w",
+    "test": "jest",
+    "seed": "node seed.js"
+  },
+  "jest": {
+    "rootDir": "specs",
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.css$": "jest-transform-css"
+    }
+  },
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "axios": "^0.18.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "cors": "^2.8.5",
+    "css-loader": "^2.1.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "express": "^4.16.2",
+    "faker": "^4.1.0",
+    "jest": "^24.1.0",
+    "jest-transform-css": "^2.0.0",
+    "morgan": "^1.9.0",
+    "mysql": "^2.16.0",
+    "node-fetch": "^2.3.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "style-loader": "^0.23.1",
+    "webpack": "^3.11.0"
+  },
+  "devDependencies": {
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git"
+  }
+}

@@ -1,0 +1,305 @@
+#reviews {
+	font-family: Segoe UI;
+	margin: 0 1rem;
+	width: 640px;
+}
+
+#reviews .aggregateReviews .reviewsCount {
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid grey;
+}
+
+#reviews .aggregateReviews .aggregate {
+	display: flex;
+	border-bottom: 1px solid grey;
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+}
+
+#reviews .aggregateReviews .aggregate .leftAggregate {
+	margin-right: 2rem;
+}
+
+#reviews .aggregateReviews .aggregate .description {
+	font-weight: 500;
+	padding-bottom: 1rem;
+}
+
+#reviews .aggregateReviews .aggregate .overallStars {
+	display: flex;
+	font-size: .875rem;
+	padding-bottom: 1rem;
+}
+
+#reviews .aggregateReviews .aggregate .overallStars .overlay {
+	display: flex;
+	width: 80px;
+	margin-right: 1rem;
+}
+
+#reviews .aggregateReviews .aggregate .overallStars .background {
+	display: block;
+	position: absolute;
+	float: left;
+}
+
+#reviews .aggregateReviews .aggregate .overallStars .foreground {
+	display: block;
+	position: absolute;
+	float: left;
+}
+
+#reviews .dynamicWidth {
+	overflow: hidden;
+	height: 1rem;
+	white-space: nowrap;
+}
+
+#reviews .aggregateReviews .aggregate .metrics {
+	display: flex;
+	flex-direction: row;
+}
+
+#reviews .aggregateReviews .aggregate .metrics .metric {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	position: relative;
+	padding: 0 .5rem;
+}
+
+#reviews .aggregateReviews .aggregate .metrics .metric .metricValue {
+	font-weight: 500;
+}
+
+#reviews .aggregateReviews .aggregate .metrics .metric .metricName {
+	text-transform: capitalize;
+}
+
+#reviews .aggregateReviews .aggregate .metrics .metric:not(:last-child):after {
+	display: block;
+	position: absolute;
+	right: 0;
+	background: lightGray;
+	content: '';
+	height: 100%;
+	width: 1px;
+}
+
+#reviews .aggregateReviews .aggregate .aggregateStars {
+	display: flex;
+	flex-direction: column;
+	padding-top: 2rem;
+	width: 16rem;
+}
+
+#reviews .aggregateReviews .aggregate .starBar {
+	display: flex;
+	padding: .25rem;
+	align-items: center;
+}
+
+#reviews .aggregateReviews .aggregate .starBar:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#reviews .hoverBar {
+	border: 2px solid crimson !important;
+}
+
+#reviews .aggregateReviews .aggregate .starBar .star {
+	padding-right: .5rem;
+	width: 1rem;
+	text-align: center;
+	pointer-events: none;
+}
+
+#reviews .aggregateReviews .aggregate .starBar .bar {
+	display: flex;
+	flex: auto;
+	align-items: center;
+	border: 1px solid lightGray;
+	box-sizing: border-box;
+	width: 100%;
+	height: 1rem;
+	pointer-events: none;
+}
+
+#reviews .aggregateReviews .aggregate .starBar .redBar {
+	background: crimson;
+	height: 100%;
+	pointer-events: none;
+}
+
+#reviews .reviewToolbar {
+	margin-bottom: 1rem;
+}
+
+#reviews .reviewToolbar .sortBy {
+	margin-bottom: 1rem;
+}
+
+#reviews .reviewToolbar select {
+	margin-bottom: 1rem;
+}
+
+#reviews .reviewToolbar .filters {
+	margin-bottom: 1rem;
+}
+
+#reviews .reviewToolbar .unselected {
+	border: 1px solid grey;
+	margin-right: 1rem;
+	padding: .3rem .3rem;
+	cursor: pointer;
+}
+
+#reviews .reviewToolbar .unselected:hover {
+	border: 2px solid crimson;
+}
+
+#reviews .reviewToolbar .selected {
+	border: 2px solid crimson;	
+	margin-right: 1rem;
+	padding: .3rem .3rem;
+	cursor: pointer;
+}
+
+#reviews .review {
+	display: flex;
+	flex-direction: row;
+	color: darkBlue;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px grey solid;
+}
+
+#reviews .review .profile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	font-size: .875rem;
+	font-weight: 500;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	width: 6rem;
+	flex: none;
+}
+
+#reviews .review .profile .circle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: tan;
+	color: white;
+	font-weight: 500;
+	text-transform: capitalize;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+}
+
+#reviews .review .profile .VIP {
+	position: relative;
+	background-color: orange;
+	padding: 2px .5rem;
+	font-size: 12px;
+	border-radius: 1rem;
+	font-weight: 700;
+	top: -55px;
+	left: -25px;
+	color: white;
+}
+
+#reviews .review .profile .author {
+	margin-top: .5rem;
+}
+
+#reviews .review .profile .city {
+	margin-top: .5rem;
+	color: grey;
+}
+
+#reviews .review .profile .pastReviews {
+	margin-top: .5rem;
+}
+
+#reviews .review .userReview {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+#reviews .review .userReview .banner {
+	display: flex;
+	flex-direction: column;
+}
+
+#reviews .review .userReview .banner .starsAndDate {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	font-size: .875rem;
+	font-weight: 500;
+}
+
+#reviews .review .userReview .banner .starsAndDate .date::before {
+	content: '\B7';
+	color: black;
+  padding-left: .5rem;
+  padding-right: 0.5rem;
+  font-weight: bolder;
+}
+
+#reviews .review .userReview .banner .ratings {
+	display: flex;
+	flex-direction: row;
+	font-weight: bolder;
+	font-size: .875rem;
+	margin-top: 0.5rem;
+}
+
+#reviews .review .userReview .banner .ratings div {
+	padding-left: .5rem;
+	color: red;
+}
+
+#reviews .review .userReview .banner .ratings div:not(:last-child)::after {
+	content: '\B7';
+	color: black;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  font-weight: bolder;
+}
+
+#reviews .review .userReview .post {
+	white-space: pre-wrap;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+#reviews .review .userReview .hide {
+	display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+#reviews .review .userReview .show {
+	display: inherit;
+}
+
+#reviews .review .userReview .expand {
+	cursor: pointer;
+	color: Crimson;
+}
+
+#reviews .review .userReview .expand:hover {
+	text-decoration: underline;
+}
