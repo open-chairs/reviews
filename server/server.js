@@ -16,13 +16,11 @@ const fakeReview = require('../seed.js');
 app.use(cors());
 app.use(morgan('dev'));
 
-//app.use(express.static(path.join(__dirname, '../public')));
 app.use('/', express.static(public));
-app.use('/(\\d+)/', express.static(public));
 
-
-app.get('/api/reviews', (req, res) => {
-	db.get((results) => {
+app.get('/api/reviews/:id', (req, res) => {
+	let id = req.params.id;
+	db.get(id,(results) => {
 		res.send(results);
 	});
 });
@@ -78,6 +76,8 @@ app.post('/api/foodtext', parser.text(), (req, res) => {
 	.then(json => res.send(json))
 	.catch(err => res.send(404))
 })
+
+app.use('/(\\d+)/', express.static(public));
 
 app.listen(port, () => {
   console.log(`Express reviews server running at: http://localhost:${port}`);
