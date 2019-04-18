@@ -49,6 +49,7 @@
     "webpack": "^3.11.0"
   },
   "devDependencies": {
+    "csv-write-stream": "^2.0.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git"
   }
 }
