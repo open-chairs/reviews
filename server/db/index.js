@@ -3,9 +3,9 @@ var config = require('./config.js');
 
 var connection = mysql.createConnection(config);
 
-var get = (cb) => {
+var get = (id, cb) => {
 	connection.query(
-		`SELECT jdoc FROM reviews`, (err, res) => {
+		`SELECT jdoc FROM reviews WHERE JSON_EXTRACT (jdoc, "$.restaurant_id") = ${id}`, (err, res) => {
 			if (err) {
 				cb(err);
 			} else {
@@ -16,7 +16,7 @@ var get = (cb) => {
 
 var post = (json, cb) => {
 	connection.query(
-		`INSERT INTO reviews VALUES ('${JSON.stringify(json)}')`, (err, res) => {
+		`INSERT INTO reviews (jdoc) VALUES ('${JSON.stringify(json)}')`, (err, res) => {
 			if (err) {
 				cb(err);
 			} else {

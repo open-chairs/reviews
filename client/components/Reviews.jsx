@@ -11,13 +11,14 @@ class Reviews extends React.Component {
 		super(props);
 		this.state = {
 			reviews: this.props.reviews,
-			starFilter: null
+			starFilter: null,
+			restaurantId: window.location.pathname
 		};
 		this.updateStarFilter = this.updateStarFilter.bind(this);
 	}
 
 	componentWillMount() {
-  	fetch(`http://localhost:${port}/api/reviews`, { method: 'GET' })
+  	fetch(`http://localhost:${port}/api/reviews${this.state.restaurantId}`, { method: 'GET' })
 			.then(res => res.json())
 			.then(json => {
 				// console.log(json)
