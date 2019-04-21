@@ -2,82 +2,67 @@ const fs = require("fs");
 const faker = require("faker");
 
 //const totalRecords = 100000000;
-const totalRecords = 10e6;
+const totalRecords = 100;
 
-// Note that this datashape is flatter than what was originally designed (contains review obj)
-// front-end components will require some refactoring to handle this dataset
-// Flattened fields: name,restaurant_id,city,stars,pastReviews,isVIP,date,post,overall,food,service,ambience
-
-const generateReview = () => {
-  return {
-    name: faker.name.firstName(),
-    restaurant_id: faker.random.number({ min: 1, max: 100000000 }),
-    city: faker.address.city(),
-    star: faker.random.number({ min: 1, max: 5 }),
-    pastReviews: faker.random.number(),
-    isVIP: faker.random.boolean(),
-    date: `${faker.date.between("2019-01-01", "2019-03-31")}`,
-    post: faker.lorem.paragraph(),
-    overall: faker.random.number({ min: 1, max: 5 }),
-    food: faker.random.number({ min: 1, max: 5 }),
-    service: faker.random.number({ min: 1, max: 5 }),
-    ambience: faker.random.number({ min: 1, max: 5 })
-  };
-};
-
+//format date to YYYY-MM-DD
 function formatFakerDate() {
-  var date = new Date(
-		faker.date.between("2019-01-01","2019-03-31")),
+  var date = new Date(faker.date.between("2019-01-01", "2019-03-31")),
     mnth = ("0" + (date.getMonth() + 1)).slice(-2),
     day = ("0" + date.getDate()).slice(-2);
   return [date.getFullYear(), mnth, day].join("-");
 }
 
-const exampleReview = '\nAlanis,1030904,East Lenny,14036,false,2019-03-30,Assumenda quia numquam omnis qui quae consequatur doloremque hic non. Odit ea a laboriosam tempore ipsam dolorem. Quidem repellendus quia numquam. Ut omnis a fugiat. At modi voluptatem. Quo aut soluta repellat debitis est.,2,5,1';
+//random cities
+const cities = [
+  "New York",
+  "New Jersey",
+  "Los Angeles",
+  "San Jose",
+  "Austin",
+  "Columbus",
+  "Milwaukee",
+  "Kansas City",
+  "Buffalo",
+  "Winston–Salem",
+  "Savannah",
+  "Syracuse",
+  "Cheyenne",
+  "Seattle",
+  "Lafayette",
+  "Adelaide",
+  "Sydney",
+  "Melbourne",
+  "Perth",
+  "Brisbane",
+  "Penang"
+];
 
-/*
-// Function used to generate reviews record
-// Fields: name,restaurant_id,city,(*stars*),pastReviews,isVIP,date,post,(*overall*),food,service,ambience
+// Function used to generate reviews record. Fields:
+// name,restaurant_id,city,pastReviews,isVIP,date,post,food,service,ambience
 // --> *stars* & *overall* should be calculated - omit field from db
+// This datashape is flatter than what was originally designed (contains review obj)
 const generateReviewCSV = () => {
   return `\n${faker.name.firstName()},${faker.random.number({
     min: 1,
     max: 100000000
-  })},${faker.address.city()},${faker.random.number()},${faker.random.boolean()},${faker.date.between(
-    "2019-01-01",
-    "2019-03-31"
-  )},${faker.lorem.paragraph()},${faker.random.number({
-    min: 1,
-    max: 5
-  })},${faker.random.number({ min: 1, max: 5 })},${faker.random.number({
+  })},${
+    cities[faker.random.number({ min: 0, max: 20 })]
+  },${faker.random.number()},${faker.random.boolean()},${formatFakerDate()},${faker.lorem.paragraph()},${faker.random.number(
+    { min: 1, max: 5 }
+  )},${faker.random.number({ min: 1, max: 5 })},${faker.random.number({
     min: 1,
     max: 5
   })}`;
 };
-*/
 
-const generateReviewCSV = () => {
-  return '\nAlanis,1030904,East Lenny,14036,false,2019-03-30,Assumenda quia numquam omnis qui quae consequatur doloremque hic non. Odit ea a laboriosam tempore ipsam dolorem. Quidem repellendus quia numquam. Ut omnis a fugiat. At modi voluptatem. Quo aut soluta repellat debitis est.,2,5,1'
-  // return `\n${faker.name.firstName()},${faker.random.number({
-  //   min: 1,
-  //   max: 100000000
-  // })},${faker.address.city()},${faker.random.number()},${faker.random.boolean()},${faker.date.between(
-  //   "2019-01-01",
-  //   "2019-03-31"
-  // )},${faker.lorem.paragraph()},${faker.random.number({
-  //   min: 1,
-  //   max: 5
-  // })},${faker.random.number({ min: 1, max: 5 })},${faker.random.number({
-  //   min: 1,
-  //   max: 5
-  // })}`;
-};
-
-const stream = fs.createWriteStream("./reviewsData.csv");
+const stream = fs.createWriteStream("./testData.csv");
 
 function writeManyReviews() {
   let count = totalRecords;
-	writeReviews();
+  stream.write(
+    "name,restaurant_id,city,pastReviews,isVIP,date,post,food,service,ambience"
+  );
+  writeReviews();
 
   function writeReviews() {
     let okToLoad = true;
