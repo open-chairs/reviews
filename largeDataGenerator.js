@@ -1,8 +1,7 @@
 const fs = require("fs");
 const faker = require("faker");
 
-//const totalRecords = 100000000;
-const totalRecords = 100;
+const totalRecords = 100e6;
 
 //format date to YYYY-MM-DD
 function formatFakerDate() {
@@ -44,10 +43,10 @@ const cities = [
 const generateReviewCSV = () => {
   return `\n${faker.name.firstName()},${faker.random.number({
     min: 1,
-    max: 100000000
+    max: 10000000
   })},${
     cities[faker.random.number({ min: 0, max: 20 })]
-  },${faker.random.number()},${faker.random.boolean()},${formatFakerDate()},${faker.lorem.paragraph()},${faker.random.number(
+  },${faker.random.number({ min: 2, max: 100 })},${faker.random.boolean()},${formatFakerDate()},${faker.lorem.paragraph()},${faker.random.number(
     { min: 1, max: 5 }
   )},${faker.random.number({ min: 1, max: 5 })},${faker.random.number({
     min: 1,
@@ -55,7 +54,7 @@ const generateReviewCSV = () => {
   })}`;
 };
 
-const stream = fs.createWriteStream("./testData.csv");
+const stream = fs.createWriteStream("./reviews.csv");
 
 function writeManyReviews() {
   let count = totalRecords;
@@ -82,39 +81,3 @@ function writeManyReviews() {
 
 writeManyReviews();
 
-/*
-// will take 25 hrs (linear extrapolation from 1M records) to run
-// fail when generating 10M records
-const reviewStream = fs.createWriteStream('./test.csv');
-
-for (let i = 0; i <= totalRecords; i++) {
-	reviewStream.write(generateReviewCSV());
-}
-
-reviewStream.end();
-*/
-
-/*
-// will take 25 hrs (linear extrapolation from 100k records) to run...
-while (writtenRecords < totalRecords) {
-	const batch = 1000;
-	const records = [];
-	for (let i = 0; i <= batch; i++) {
-		records.push(generateReviewCSV());
-	}
-	fs.appendFileSync('reviews.csv', records.join(''), (err) => {
-		if (err) throw err;
-	});
-	writtenRecords += batch;
-}
-*/
-
-/*
-writer.pipe(fs.createWriteStream('testData.csv'));
-
-for (let i = 0; i < totalRecords; i++) {
-	writer.write(generateReview())
-};
-
-writer.end;
-*/
