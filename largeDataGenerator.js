@@ -1,7 +1,7 @@
 const fs = require("fs");
 const faker = require("faker");
 
-const totalRecords = 100e6;
+const totalRecords = 100e5;
 
 //format date to YYYY-MM-DD
 function formatFakerDate() {
@@ -41,20 +41,21 @@ const cities = [
 // --> *stars* & *overall* should be calculated - omit field from db
 // This datashape is flatter than what was originally designed (contains review obj)
 const generateReviewCSV = () => {
-  return `\n${faker.name.firstName()},${faker.random.number({
-    min: 1,
-    max: 10000000
-  })},${
-    cities[faker.random.number({ min: 0, max: 20 })]
-  },${faker.random.number({ min: 2, max: 100 })},${faker.random.boolean()},${formatFakerDate()},${faker.lorem.paragraph()},${faker.random.number(
-    { min: 1, max: 5 }
-  )},${faker.random.number({ min: 1, max: 5 })},${faker.random.number({
-    min: 1,
-    max: 5
-  })}`;
+  let firstName = faker.name.firstName();
+  let restaurantId = faker.random.number({ min: 1, max: 10000000 });
+  let city = cities[faker.random.number({ min: 0, max: 20 })];
+  let previousReviews = faker.random.number({ min: 2, max: 100 });
+  let isVip = faker.random.boolean(); 
+  let date = formatFakerDate();
+  let post = faker.lorem.paragraph();
+  let food = faker.random.number({ min: 1, max: 5 });
+  let service = faker.random.number({ min: 1, max: 5 });
+  let ambience = faker.random.number({ min: 1, max: 5 });
+
+  return `\n${firstName},${restaurantId},${city},${previousReviews},${isVip},${date},${post},${food},${service},${ambience}`;
 };
 
-const stream = fs.createWriteStream("./reviews.csv");
+const stream = fs.createWriteStream("./testReviews.csv");
 
 function writeManyReviews() {
   let count = totalRecords;
