@@ -9,7 +9,7 @@ const get = (id, cb) => {
 		if (err) {
 			cb(err);
 		} else {
-			cb(res);
+			cb(err,res);
 		}
 	})
 }

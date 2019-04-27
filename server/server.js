@@ -19,8 +19,9 @@ app.use('/', express.static(public));
 
 app.get('/api/reviews/:id', (req, res) => {
 	let id = req.params.id;
-	db.get(id,(results) => {
-		res.send(results.rows);
+	db.get(id, (err, results) => {
+		if (err) { res.statusCode(500).send(err) }
+		else {res.send(results.rows)};
 	});
 });
 
