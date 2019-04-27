@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import fetch from 'node-fetch';
 
 import Post from './Post.jsx';
