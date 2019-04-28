@@ -3,6 +3,7 @@ import React from 'react';
 import AggregateReviews from './AggregateReviews.jsx';
 import IndividualReviews from './IndividualReviews.jsx';
 import '../style.css';
+import axios from 'axios';
 
 var port = process.env.PORT || 3004;
 
@@ -10,45 +11,49 @@ class Reviews extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			reviews: this.props.reviews,
+			reviews: [],
 			starFilter: null,
 			restaurantId: window.location.pathname
 		};
 		this.updateStarFilter = this.updateStarFilter.bind(this);
+		this.getReviews = this.getReviews.bind(this);
+		this.addAverageRating = this.addAverageRating.bind(this);
 	}
 
-	componentWillMount() {
-  	fetch(`http://localhost:${port}/api/reviews${this.state.restaurantId}`, { method: 'GET' })
-			.then(res => res.json())
-			.then(json => {
-				// console.log(json)
-				// console.log(this.peel(json))
-				var data = this.peel(json)
-				this.setState({ reviews: data })
-			})
-			.catch(err => console.error(err))
+	componentDidMount() {
+		this.getReviews();
+	}
+
+	getReviews() {
+		axios.get(`http://localhost:${port}/api/reviews${this.state.restaurantId}`)
+		.then(response => this.setState({ reviews: response.data}))
+		.catch(err => console.error(err))
 	}
 
 	updateStarFilter(star) {
 		this.setState({ starFilter: star });
 	}
 
-	peel(arr) {
-		return arr.reduce((acc, cur) => {
-			acc.push(JSON.parse(cur.jdoc));
-			return acc;
-		}, []);		
+	//calculates the avg rating (food, service & ambience) & adds those properties to reviews object
+	addAverageRating(reviews) {
+		return reviews.map((review) => {
+			let avg = Math.round((review.food + review.service + review.ambience)/3);
+			review.stars = avg;
+			review.overall = avg;
+			return review;
+		})
 	}
 
 	render() {
+		let reviews = this.addAverageRating(this.state.reviews);
 		return (
 			<div>
 				<AggregateReviews 
-					reviews={this.state.reviews} 
+					reviews={reviews} 
 					updateStarFilter={this.updateStarFilter} 
 				/>
 				<IndividualReviews 
-					reviews={this.state.reviews} 
+					reviews={reviews} 
 					updateStarFilter={this.updateStarFilter} 
 					starFilter={this.state.starFilter} 
 				/>

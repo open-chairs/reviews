@@ -75,7 +75,7 @@ class AggregateReviews extends React.Component {
 
 	render() {
 		if (this.props.reviews) {
-			var metrics = this.	props.reviews.map(review => neuter(review.review, 'post'));
+			var metrics = this.props.reviews.map(review => neuter(review.review, 'post'));
 			var averageMetrics = {};
 			metrics.forEach(metric => {
 				var keys = Object.keys(metric);
@@ -121,7 +121,7 @@ class AggregateReviews extends React.Component {
 							<div className='metrics'>
 								{
 									averageMetricKeys.map(averageMetric => (
-										<div className='metric'>
+										<div className='metric' key={averageMetric}>
 											<div className='metricValue'>
 												{averageMetrics[averageMetric]}
 											</div>
@@ -142,6 +142,7 @@ class AggregateReviews extends React.Component {
 										onMouseLeave={this.removeBorder}
 										onClick={this.addStarFilter}
 										data-stars={star}
+										key={star}
 									>
 										<span className='star'>
 											{star}
