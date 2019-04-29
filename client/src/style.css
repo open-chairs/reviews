@@ -1,8 +1,7 @@
 #reviews {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
-	margin: 0 1rem;
-	width: 640px;
+	margin: 1rem;
 }
 
 #reviews .aggregateReviews .reviewsCount {
