@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AggregateReviews from './AggregateReviews.jsx';
-import IndividualReviews from './IndividualReviews.jsx';
+import Feed from './Feed.jsx';
 import '../style.css';
 import axios from 'axios';
 
@@ -31,7 +31,7 @@ class Reviews extends React.Component {
 	}
 
 	updateStarFilter(star) {
-		this.setState({ starFilter: star });
+		this.setState({ starFilter: star })
 	}
 
 	//calculates the avg rating (food, service & ambience) & adds those properties to reviews object
@@ -46,17 +46,20 @@ class Reviews extends React.Component {
 
 	render() {
 		let reviews = this.addAverageRating(this.state.reviews);
+		let filtered;
+		if (this.state.starFilter) {
+			filtered = reviews.filter(review => {
+				return review.stars === Number(this.state.starFilter)
+			})
+		};
+
 		return (
 			<div>
 				<AggregateReviews 
 					reviews={reviews} 
 					updateStarFilter={this.updateStarFilter} 
 				/>
-				<IndividualReviews 
-					reviews={reviews} 
-					updateStarFilter={this.updateStarFilter} 
-					starFilter={this.state.starFilter} 
-				/>
+				<Feed reviews={this.state.starFilter === null ? reviews : filtered} />
 			</div>
 		);
 	}

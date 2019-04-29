@@ -29,3 +29,6 @@ server/foodparser.config.js
 
 # csv files
 *.csv
+
+# reference code
+zReference
