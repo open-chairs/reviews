@@ -5,7 +5,7 @@ const client = new Client(config);
 client.connect();
 
 const get = (id, cb) => {
-	client.query(`SELECT * FROM reviews WHERE restaurant_id = ${id}`, (err, res) => {
+	client.query(`SELECT * FROM reviews WHERE restaurant_id = ${id} ORDER BY date DESC`, (err, res) => {
 		if (err) {
 			cb(err);
 		} else {
