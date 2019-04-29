@@ -56,6 +56,7 @@ class AggregateReviews extends React.Component {
 		this.addBorder = this.addBorder.bind(this);
 		this.removeBorder = this.removeBorder.bind(this);
 		this.addStarFilter = this.addStarFilter.bind(this);
+		this.resetStarFilter = this.resetStarFilter.bind(this);
 	}
 
 	addBorder(e) {
@@ -71,6 +72,10 @@ class AggregateReviews extends React.Component {
 	addStarFilter(e) {
 		var stars = e.target.dataset.stars;
 		this.props.updateStarFilter(stars);
+	}
+
+	resetStarFilter() {
+		this.props.updateStarFilter(null);
 	}
 
 	render() {
@@ -116,7 +121,7 @@ class AggregateReviews extends React.Component {
 										{ fillStars(5, averageStars / 5 * 100) }
 									</div>
 								</div>
-								{ (averageStars).toFixed(1) } based on recent ratings
+								<span onClick={this.resetStarFilter}>{ (averageStars).toFixed(1) } based on recent ratings</span>
 							</div>
 							<div className='metrics'>
 								{
