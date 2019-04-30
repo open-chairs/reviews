@@ -1,7 +1,7 @@
 #reviews {
-	font-family: Segoe UI;
-	margin: 0 1rem;
-	width: 640px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	margin: 1rem;
 }
 
 #reviews .aggregateReviews .reviewsCount {
@@ -282,6 +282,7 @@
 	white-space: pre-wrap;
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
+	font-size: 0.875rem;
 }
 
 #reviews .review .userReview .hide {

@@ -27,8 +27,8 @@ public/bundle.js
 server/db/config.js
 server/foodparser.config.js
 
-#csv
+# csv files
 *.csv
 
-#test files
-psqlschema.sql
+# reference code
+zReference

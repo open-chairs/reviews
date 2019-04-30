@@ -56,6 +56,7 @@ class AggregateReviews extends React.Component {
 		this.addBorder = this.addBorder.bind(this);
 		this.removeBorder = this.removeBorder.bind(this);
 		this.addStarFilter = this.addStarFilter.bind(this);
+		this.resetStarFilter = this.resetStarFilter.bind(this);
 	}
 
 	addBorder(e) {
@@ -73,9 +74,13 @@ class AggregateReviews extends React.Component {
 		this.props.updateStarFilter(stars);
 	}
 
+	resetStarFilter() {
+		this.props.updateStarFilter(null);
+	}
+
 	render() {
 		if (this.props.reviews) {
-			var metrics = this.	props.reviews.map(review => neuter(review.review, 'post'));
+			var metrics = this.props.reviews.map(review => neuter(review.review, 'post'));
 			var averageMetrics = {};
 			metrics.forEach(metric => {
 				var keys = Object.keys(metric);
@@ -116,12 +121,12 @@ class AggregateReviews extends React.Component {
 										{ fillStars(5, averageStars / 5 * 100) }
 									</div>
 								</div>
-								{ (averageStars).toFixed(1) } based on recent ratings
+								<span onClick={this.resetStarFilter}>{ (averageStars).toFixed(1) } based on recent ratings</span>
 							</div>
 							<div className='metrics'>
 								{
 									averageMetricKeys.map(averageMetric => (
-										<div className='metric'>
+										<div className='metric' key={averageMetric}>
 											<div className='metricValue'>
 												{averageMetrics[averageMetric]}
 											</div>
@@ -142,6 +147,7 @@ class AggregateReviews extends React.Component {
 										onMouseLeave={this.removeBorder}
 										onClick={this.addStarFilter}
 										data-stars={star}
+										key={star}
 									>
 										<span className='star'>
 											{star}
