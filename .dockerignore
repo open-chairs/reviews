@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+npm-debug.log
+
+# Configuration Files
+*config.*
+
+# Seed files
+largeDataGenerator.js
+newSeed.js
+
+# New Relic
+newrelic.js
+report.json
+report.json.html
+
+# Misc
+.vscode/
+.DS_Store
+zReference
+specs
+
