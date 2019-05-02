@@ -32,3 +32,6 @@ server/foodparser.config.js
 
 # reference code
 zReference
+
+#newrelic
+newrelic.js

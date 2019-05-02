@@ -1,8 +1,6 @@
+require('newrelic');
 const express = require('express');
-const parser = require('body-parser');
-const morgan = require('morgan');
 const path = require('path');
-const fetch = require('node-fetch');
 const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3004;
@@ -12,7 +10,6 @@ const db = require('./db');
 const public = path.join(__dirname, '../client/dist');
 
 app.use(cors());
-app.use(morgan('dev'));
 
 app.use('/', express.static(public));
 
