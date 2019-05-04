@@ -27,7 +27,7 @@ class Reviews extends React.Component {
 	}
 
 	getReviews() {
-		axios.get(`http://localhost:${port}/api/reviews${this.state.restaurantId}`)
+		axios.get(`/api/reviews${this.state.restaurantId}`)
 		.then(response => this.setState({ reviews: response.data }))
 		.catch(err => console.error(err))
 	}
