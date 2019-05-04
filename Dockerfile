@@ -8,6 +8,10 @@ COPY . /src/app
 
 RUN npm install
 
+RUN apt-get update
+
+RUN apt-get -y install vim
+
 EXPOSE 3004
 
 CMD [ "npm", "start" ]

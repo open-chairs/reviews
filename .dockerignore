@@ -4,10 +4,13 @@ npm-debug.log
 
 # Configuration Files
 *config.*
+server/foodparser.config.js
 
 # Seed files
 largeDataGenerator.js
 newSeed.js
+reviews.csv
+testData.csv
 
 # New Relic
 newrelic.js
@@ -19,4 +22,6 @@ report.json.html
 .DS_Store
 zReference
 specs
+README.md
+
 
